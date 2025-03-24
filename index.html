@@ -1737,6 +1737,44 @@
       .light-mode .cursor-trail.active {
         background: #9370DB;
       }
+
+      /* Contact Form Dark Mode Styles */
+      body:not(.light-mode) .contact-form {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      body:not(.light-mode) .contact-form input,
+      body:not(.light-mode) .contact-form textarea {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff !important;
+      }
+
+      body:not(.light-mode) .contact-form input::placeholder,
+      body:not(.light-mode) .contact-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      body:not(.light-mode) .contact-form input:focus,
+      body:not(.light-mode) .contact-form textarea:focus {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: #FFBA08;
+        box-shadow: 0 0 10px rgba(255, 186, 8, 0.1);
+      }
+
+      body:not(.light-mode) .contact-form .btn-primary {
+        background: #FFBA08 !important;
+        border-color: #FFBA08 !important;
+        color: #000 !important;
+      }
+
+      body:not(.light-mode) .contact-form .btn-primary:hover {
+        background: #FFB000 !important;
+        border-color: #FFB000 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 186, 8, 0.2);
+      }
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
