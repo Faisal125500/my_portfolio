@@ -2033,6 +2033,102 @@
           background-size: cover !important;
         }
       }
+
+      /* Add these modal styles after your existing styles */
+      .custom-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+        display: none;
+        min-width: 300px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .light-mode .custom-modal {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 5px 15px rgba(147, 112, 219, 0.2);
+      }
+
+      .custom-modal.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .custom-modal h3 {
+        color: #FFBA08;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+
+      .light-mode .custom-modal h3 {
+        color: #9370DB;
+      }
+
+      .custom-modal p {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .light-mode .custom-modal p {
+        color: #1a1a1a;
+      }
+
+      .custom-modal button {
+        background: #FFBA08;
+        color: #000;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .light-mode .custom-modal button {
+        background: #9370DB;
+        color: #fff;
+      }
+
+      .custom-modal button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 10px rgba(255, 186, 8, 0.3);
+      }
+
+      .light-mode .custom-modal button:hover {
+        box-shadow: 0 3px 10px rgba(147, 112, 219, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -40%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        display: none;
+      }
+
+      .modal-overlay.show {
+        display: block;
+      }
     </style>
 
     <script>
@@ -2573,7 +2669,7 @@
 
         <div class="row no-gutters block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="https://formspree.io/f/xrbpjpkl" method="POST" class="bg-light p-4 p-md-5 contact-form">
+            <form id="contactForm" action="https://formspree.io/f/xrbpjpkl" method="POST" class="bg-light p-4 p-md-5 contact-form">
               <div class="form-group">
                 <input type="text" class="form-control" name="name" placeholder="Your Name" required>
               </div>
@@ -2590,6 +2686,14 @@
                 <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
               </div>
             </form>
+
+            <!-- Custom Success Modal -->
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="custom-modal" id="successModal">
+              <h3>Thank You!</h3>
+              <p>Your message has been sent successfully. I will get back to you soon!</p>
+              <button onclick="closeModal()">Close</button>
+            </div>
           </div>
 
           <div class="col-md-6 d-flex">
@@ -2803,31 +2907,40 @@
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const formData = new FormData(this);
-      const messageDiv = document.getElementById('form-message');
+      const form = this;
+      const formData = new FormData(form);
       
-      fetch('process_form.php', {
+      fetch('https://formspree.io/f/xrbpjpkl', {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       })
       .then(response => response.json())
       .then(data => {
-        messageDiv.style.display = 'block';
-        if (data.status === 'success') {
-          messageDiv.className = 'alert alert-success';
-          messageDiv.textContent = data.message;
-          this.reset(); // Clear the form
+        if (data.ok) {
+          // Show custom success modal
+          document.getElementById('modalOverlay').classList.add('show');
+          document.getElementById('successModal').classList.add('show');
+          // Reset form
+          form.reset();
         } else {
-          messageDiv.className = 'alert alert-danger';
-          messageDiv.textContent = data.message;
+          alert('There was an error sending your message. Please try again.');
         }
       })
       .catch(error => {
-        messageDiv.style.display = 'block';
-        messageDiv.className = 'alert alert-danger';
-        messageDiv.textContent = 'An error occurred. Please try again later.';
+        alert('There was an error sending your message. Please try again.');
       });
     });
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('show');
+      document.getElementById('successModal').classList.remove('show');
+    }
+
+    // Close modal when clicking overlay
+    document.getElementById('modalOverlay').addEventListener('click', closeModal);
   </script>
   </body>
 </html>
