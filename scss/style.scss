@@ -402,7 +402,7 @@ h1, h2, h3, h4, h5,
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center center;
-			height: 750px;
+			height: 60%;
 			position: relative;
 			z-index: 0;
 			@include media-breakpoint-down(lg){
@@ -647,8 +647,8 @@ h1, h2, h3, h4, h5,
 
 
 .hero-wrap{
-	width: 100%;
-	height: 100%;
+	width: 60%;
+	height: 60%;
 	position: inherit;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -815,12 +815,12 @@ h1, h2, h3, h4, h5,
 //FTCO ABOUT
 .ftco-about{
 	.img-about{
-		width: 100%;
+		width: 60%;
 		z-index: 0;
 		position: relative;
 		.img{
 			display: block;
-			width: 100%;
+			width: 60%;
 			position: relative;
 			z-index: 1;
 		}
@@ -1416,6 +1416,8 @@ textarea.form-control {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+	width: 60%;
+	height: 60%;
 }
 
 
@@ -1510,8 +1512,8 @@ textarea.form-control {
 	background-position: center center;
 	position: relative;
 	display: block;
-	width: 100%;
-	height: 350px;
+	width: 60%;
+	height: 60%;
 }
 .blog-entry{
 	position: relative;

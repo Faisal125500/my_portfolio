@@ -8429,13 +8429,13 @@ h1, h2, h3, h4, h5,
         background: #b3b3b3; }
   .owl-carousel.home-slider {
     position: relative;
-    height: 750px;
+    height: 600px;
     z-index: 0; }
     .owl-carousel.home-slider .slider-item {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
-      height: 750px;
+      height: 600px;
       position: relative;
       z-index: 0; }
       @media (max-width: 1199.98px) {
@@ -8450,15 +8450,21 @@ h1, h2, h3, h4, h5,
         background: #000000;
         opacity: 0; }
       .owl-carousel.home-slider .slider-item .slider-text {
-        height: 750px;
+        height: 600px;
         z-index: 0; }
         @media (max-width: 991.98px) {
           .owl-carousel.home-slider .slider-item .slider-text {
             text-align: center; } }
         .owl-carousel.home-slider .slider-item .slider-text .one-third {
-          width: 60%;
-          position: relative;
-          z-index: -1; }
+          width: 40% !important;
+          height: 80vh !important;
+          position: absolute;
+          right: 0;
+          top: 0;
+          background-size: cover;
+          background-position: center;
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease; }
           .owl-carousel.home-slider .slider-item .slider-text .one-third .overlay {
             position: absolute;
             top: 0;
@@ -9469,7 +9475,8 @@ textarea.form-control {
   color: #fff;
   letter-spacing: .1em; }
   .post-info > div {
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 10px; }
     .post-info > div .seperator {
       display: inline-block;
       margin: 0 10px;
