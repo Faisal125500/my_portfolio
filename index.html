@@ -1976,6 +1976,63 @@
           transform: rotate(360deg);
         }
       }
+
+      /* Add these responsive styles after your existing styles */
+      
+      /* Responsive styles for About section image */
+      @media (max-width: 768px) {
+        .img-about {
+          height: 400px !important;
+          width: 100% !important;
+          margin-bottom: 30px;
+        }
+
+        .img-about .img {
+          width: 100% !important;
+          height: 100% !important;
+          background-size: contain !important;
+          background-repeat: no-repeat !important;
+          background-position: center !important;
+        }
+
+        /* Fix hero section on mobile */
+        .slider-item .one-third {
+          display: none !important; /* Hide background image on mobile */
+        }
+
+        .slider-item .one-forth {
+          width: 100% !important;
+          padding: 1em;
+          text-align: center;
+        }
+
+        .slider-text {
+          height: auto;
+          min-height: 600px;
+          padding-top: 50px;
+          padding-bottom: 50px;
+        }
+
+        .slider-text h1 {
+          font-size: 2.5em !important;
+        }
+
+        .slider-text h2 {
+          font-size: 1.5em !important;
+        }
+      }
+
+      /* Ensure about section image is visible on tablets */
+      @media (min-width: 769px) and (max-width: 991px) {
+        .img-about {
+          height: 450px !important;
+        }
+
+        .img-about .img {
+          height: 100% !important;
+          background-size: cover !important;
+        }
+      }
     </style>
 
     <script>
